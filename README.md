@@ -1,17 +1,44 @@
-# Signature Presence Detection — YOLOv8
+<div align="center">
 
-## Description
-This project detects the **presence or absence of a signature** in document images using a YOLOv8 object detection model. It can be used to automatically verify whether a document has been signed, making it useful for:
-- Document verification pipelines
-- Automated form processing
-- Digital signature validation
-- Administrative workflows
+# ✍️ Signature Presence Detection
 
-The model is trained on the **Rugwed Neev Signature Presence dataset (v3)** and exported to TFLite for mobile deployment via the Ultralytics YOLO app.
+### Real-time signature detection in documents using YOLOv8
+
+![Python](https://img.shields.io/badge/Python-3.8+-blue?style=for-the-badge&logo=python&logoColor=white)
+![YOLOv8](https://img.shields.io/badge/YOLOv8-Ultralytics-purple?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+![mAP50](https://img.shields.io/badge/mAP50-80.5%25-orange?style=for-the-badge)
+
+</div>
 
 ---
 
-## Installation
+## 📌 Overview
+
+This project automatically detects whether a **signature is present** in a document image using a fine-tuned **YOLOv8n** object detection model. It solves the problem of manually checking documents for signatures — useful in:
+
+- 📄 Document verification pipelines
+- 🏢 Administrative & HR workflows
+- 🖊️ Automated form processing
+- 📱 Mobile document scanning apps
+
+The model is trained on the **Rugwed Neev Signature Presence dataset (v3)** and exported to **TFLite** for mobile deployment.
+
+---
+
+## 📊 Model Performance
+
+| Metric | Value |
+|--------|-------|
+| 🎯 Precision | 0.749 |
+| 🔁 Recall | 0.755 |
+| ✅ **mAP50** | **0.805** |
+| 📈 mAP50-95 | 0.611 |
+| 💪 Fitness Score | 0.610 |
+
+---
+
+## 🚀 Installation
 
 ### Prerequisites
 - Python 3.8+
@@ -34,30 +61,33 @@ Pillow
 
 ---
 
-## Usage
+## 💻 Usage
 
 ### Detect signature in a single image
 ```bash
 python detect.py --input your_document.jpg
 ```
 
-### Detect signature in a folder of images
+### Detect signature in a folder
 ```bash
 python detect.py --input ./documents/
 ```
 
-### Example Python usage
+### Python example
 ```python
 from ultralytics import YOLO
 
+# Load trained model
 model = YOLO('best.pt')
 
+# Run detection
 results = model.predict(
     source='document.jpg',
     conf=0.5,
     save=True
 )
 
+# Check result
 for result in results:
     if len(result.boxes) > 0:
         print(f"✅ Signature FOUND! Confidence: {result.boxes.conf[0]:.2f}")
@@ -67,31 +97,22 @@ for result in results:
 
 ---
 
-## Project Structure
+## 🗂️ Project Structure
 
 ```
 signature-detection/
 │
-├── best.pt                  # Trained YOLOv8 model weights
-├── best_float32.tflite      # TFLite model for mobile deployment
-├── data.yaml                # Dataset configuration
-├── detect.py                # Detection script
-├── requirements.txt         # Python dependencies
-└── README.md                # This file
+├── 📦 best.pt                  # Trained YOLOv8 model weights
+├── 📱 best_float32.tflite      # TFLite model for mobile
+├── ⚙️  data.yaml               # Dataset configuration
+├── 🐍 detect.py                # Detection script
+├── 📋 requirements.txt         # Python dependencies
+└── 📖 README.md                # This file
 ```
 
 ---
 
-## Model Details
-
-This project uses a **YOLOv8n (nano)** model fine-tuned for signature presence detection.
-
-### Dataset
-- **Name:** Rugwed Neev Signature Presence
-- **Version:** v3
-- **Source:** [Roboflow Universe](https://universe.roboflow.com/rugwed/rugwed-neev-signature-presence/dataset/3)
-- **Classes:** 1 (`signature`)
-- **License:** CC BY 4.0
+## 🧠 Model Details
 
 ### Training Parameters
 
@@ -99,22 +120,21 @@ This project uses a **YOLOv8n (nano)** model fine-tuned for signature presence d
 |-----------|-------|
 | Base Model | `yolov8n.pt` |
 | Epochs | 50 |
-| Image Size | 640 x 640 |
+| Image Size | 640 × 640 |
 | Batch Size | 16 |
 | Optimizer | AdamW (auto) |
 | Framework | Ultralytics YOLOv8 |
 
-### Performance Metrics
+### Dataset
 
-| Metric | Value |
-|--------|-------|
-| **Precision** | 0.749 |
-| **Recall** | 0.755 |
-| **mAP50** | **0.805** |
-| **mAP50-95** | 0.611 |
-| **Fitness Score** | 0.610 |
+| Property | Value |
+|----------|-------|
+| Name | Rugwed Neev Signature Presence |
+| Version | v3 |
+| Classes | 1 (`signature`) |
+| License | CC BY 4.0 |
 
-### Exported Models
+### Exported Formats
 
 | Format | File | Size | Use Case |
 |--------|------|------|----------|
@@ -123,26 +143,32 @@ This project uses a **YOLOv8n (nano)** model fine-tuned for signature presence d
 
 ---
 
-## Mobile Deployment
+## 📱 Mobile Deployment
 
-The TFLite model can be used with the **Ultralytics YOLO mobile app**:
+Use the TFLite model with the **Ultralytics YOLO mobile app**:
 
 1. Upload `best.pt` to [Ultralytics HUB](https://hub.ultralytics.com)
 2. Download the **YOLO app** on Android or iOS
 3. Sign in and select your signature model
-4. Point camera at any document to detect signatures in real time!
+4. Point your camera at any document — signatures detected in **real time!** 🎉
 
 ---
 
-## License
+## 📄 License
 
-This project is licensed under the **MIT License** — see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the **MIT License** — see [LICENSE.md](LICENSE.md) for details.
 
-Dataset is licensed under **CC BY 4.0** by Rugwed (Roboflow Universe).
+Dataset licensed under **CC BY 4.0** by Rugwed.
 
 ---
 
-## Acknowledgements
+## 🙏 Acknowledgements
+
 - [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics)
-- [Roboflow](https://roboflow.com) for dataset management
-- Dataset by [Rugwed on Roboflow Universe](https://universe.roboflow.com/rugwed/rugwed-neev-signature-presence/dataset/3)
+- Dataset by Rugwed — Signature Presence Dataset v3
+
+---
+
+<div align="center">
+Made with ❤️ using YOLOv8
+</div>
