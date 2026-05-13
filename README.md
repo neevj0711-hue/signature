@@ -7,7 +7,7 @@
 ![Python](https://img.shields.io/badge/Python-3.8+-blue?style=for-the-badge&logo=python&logoColor=white)
 ![YOLOv8](https://img.shields.io/badge/YOLOv8-Ultralytics-purple?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![mAP50](https://img.shields.io/badge/mAP50-80.5%25-orange?style=for-the-badge)
+![mAP50](https://img.shields.io/badge/mAP50-88.5%25-orange?style=for-the-badge)
 
 </div>
 
@@ -15,7 +15,7 @@
 
 ## 📌 Overview
 
-This project automatically detects whether a **signature is present** in a document image using a fine-tuned **YOLOv8n** object detection model. It solves the problem of manually checking documents for signatures — useful in:
+This project automatically detects whether a **signature is present** in a document image using a fine-tuned **YOLOv8s** object detection model. It solves the problem of manually checking documents for signatures — useful in:
 
 - 📄 Document verification pipelines
 - 🏢 Administrative & HR workflows
@@ -30,11 +30,11 @@ The model is trained on the **Rugwed Neev Signature Presence dataset (v3)** and 
 
 | Metric | Value |
 |--------|-------|
-| 🎯 Precision | 0.749 |
-| 🔁 Recall | 0.755 |
-| ✅ **mAP50** | **0.805** |
-| 📈 mAP50-95 | 0.611 |
-| 💪 Fitness Score | 0.610 |
+| 🎯 Precision | 0.873 |
+| 🔁 Recall | 0.861 |
+| ✅ **mAP50** | **0.885** |
+| 📈 mAP50-95 | 0.724 |
+| 💪 Fitness Score | 0.851 |
 
 ---
 
@@ -118,10 +118,10 @@ signature-detection/
 
 | Parameter | Value |
 |-----------|-------|
-| Base Model | `yolov8n.pt` |
-| Epochs | 50 |
+| Base Model | `yolov8s.pt` |
+| Epochs | 100 |
 | Image Size | 640 × 640 |
-| Batch Size | 16 |
+| Batch Size | 8 |
 | Optimizer | AdamW (auto) |
 | Framework | Ultralytics YOLOv8 |
 
@@ -138,7 +138,7 @@ signature-detection/
 
 | Format | File | Size | Use Case |
 |--------|------|------|----------|
-| PyTorch | `best.pt` | ~6 MB | PC / Server |
+| PyTorch | `best.pt` | ~22 MB | PC / Server |
 | TFLite | `best_float32.tflite` | 11.7 MB | Mobile / Edge |
 
 ---
